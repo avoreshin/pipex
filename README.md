@@ -1,28 +1,33 @@
 # pipex
 pipex42_21 - begin 24.12.2021
 
-План
+##План
 1) Написать программу Pipex.
 2) Список рекомендуемых (разрешенных) функций. <br>
-      ◦ access <br>
-      ◦ open <br>
-      ◦ unlink <br>
-      ◦ close <br>
+      ◦ [access](https://linux.die.net/man/2/access) проверяет права реального пользователя для файла <br>
+      ◦ [unlink](https://man7.org/linux/man-pages/man2/unlink.2.html) удаляет имя из файловой системы <br>
+      ◦ [close](https://linux.die.net/man/2/close) закрывает файловый дескриптор <br>
       ◦ read <br>
       ◦ write <br>
       ◦ malloc <br>
-      ◦ waitpid <br>
-      ◦ wait <br>
+      ◦◦ [wait, waitpid](https://man7.org/linux/man-pages/man2/wait.2.html) ждет завершения дочернего процесса <br>
       ◦ free <br>
-      ◦ pipe <br>
-      ◦ dup <br>
-      ◦ dup2 <br>
-      ◦ execve <br>
-      ◦ fork <br>
-      ◦ perror <br>
-      ◦ strerror <br>
-      ◦ exit <br>
-3)  Цель - написать программу Pipex.Это должно быть выполнено таким образом:
+      ◦ [pipe](https://man7.org/linux/man-pages/man2/pipe.2.html) создает pipe, однонаправленный канал данных <br>
+      ◦ [dup, dup2](https://man7.org/linux/man-pages/man2/dup.2.html) дублировать дескриптор файла <br>
+---
+   [execve](https://man7.org/linux/man-pages/man2/execve.2.html) выполняет программу, на которую указывает путь <br>
+``` c
+int execve (const char *pathname, char *const argv [], char * const envp []);
+ - pathname "путь где находится команда"
+ - argv [] "команда с флагами"
+ - envp [] "переменное окружение"
+```
+---
+◦ [fork](https://man7.org/linux/man-pages/man2/fork.2.html) создает дочерний процесс <br>
+◦ [perror]() распечатать сообщение об ошибке системы <br>
+◦ [strerror](https://man7.org/linux/man-pages/man3/strerror.3.html) возвращает строку, описывающую номер ошибки <br>
+◦ [exit](https://man7.org/linux/man-pages/man3/exit.3.html) завершение процесса <br>
+3) Цель - написать программу Pipex.Это должно быть выполнено таким образом:
 ``` shell
 $> ./pipex file1 cmd1 cmd2 file2 
 ```
