@@ -6,7 +6,7 @@
 /*   By: jlamonic <jlamonic@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 23:06:53 by jlamonic          #+#    #+#             */
-/*   Updated: 2021/12/29 22:09:04 by jlamonic         ###   ########.fr       */
+/*   Updated: 2022/01/04 01:39:40 by jlamonic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,44 @@ void	ft_free (t_struct *data)
 	data->cmd_arg = NULL;
 }
 
-size_t	ft_strlen(const char *str)
+void	ft_extract_pathline(char **env, t_struct *data)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (env[i])
+	{
+		if (!ft_strncmp(env[i], "PATH=", 5))
+			data->partline = env[i] + 5;
 		i++;
-	return (i);
+	}
 }
 
 void ft_part_path(char **env, t_struct *data, char *cmd_arg)
 {
+	t_path	path;
+	int 	i;
 
-}
-
-void ft_parsing_str(char *argv)
-{
-
+	i = 0;
+	if(!ft_strncmp(cmd_arg,"/",1))
+		return (cmd_arg);
+	ft_extract_pathline(env, data);
+	path.split = ft_split(data->partline, ':');
+	while (path.split[i])
+	{
+		path.temp1 = ft_strjoin(path.split[i], "/");
+		path.temp2 = ft_strjoin(path.temp1, cmd_arg);
+		free(path.temp1);
+		if (access(path.temp2, F_OK | X_OK) == 0)
+		{
+			ft_free_double_array(path.split);
+			return (path.temp2);
+		}
+		free(path.temp2);
+		i++;
+	}
+	ft_free_double_array(path.split);
+	return (NULL);
 }
 
 void	ft_parent_process(t_struct *data, char **argv, char **env, pid_t *pid)
