@@ -12,7 +12,7 @@ pipex42_21 - begin 24.12.2021
       ◦ malloc <br>
       ◦ [wait, waitpid](https://man7.org/linux/man-pages/man2/wait.2.html) ждет завершения дочернего процесса <br>
       ◦ free <br>
-      ◦ [pipe](https://man7.org/linux/man-pages/man2/pipe.2.html) создает pipe, однонаправленный канал данных <br>
+      ◦ [pipe](https://man7.org/linux/man-pages/man2/pipe.2.html) создает pipe, однонаправленный канал для передачиданных <br>
       ◦ [dup, dup2](https://man7.org/linux/man-pages/man2/dup.2.html) дублировать дескриптор файла <br>
 ---
    [execve](https://man7.org/linux/man-pages/man2/execve.2.html) выполняет программу, на которую указывает путь <br>
@@ -51,7 +51,3 @@ $> ./pipex infile ``grep a1'' ``wc -w'' outfile
 должно быть таким же, как “< infile grep a1 | wc -w > outfile”
 
 
-# ПРОПАСТЬ
-
-
-2) Сдать
